@@ -5,7 +5,7 @@ import {styles} from '../../styles/styles';
 
 Screen2 = () => (
   <View style={styles.center}>
-    <Text style={styles.title}>Favorities</Text>
+    <Text style={styles.title}>Favorites</Text>
   </View>
 );
 

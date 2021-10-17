@@ -18,4 +18,8 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
     fontWeight: 'bold',
   },
+  androidButtonText: {
+    color: 'blue',
+    fontSize: 20
+  }
 });

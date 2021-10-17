@@ -1,26 +1,41 @@
-import React, {Component} from 'react';
-import {View, Text, Button} from 'react-native';
+import React from 'react';
+import {View, Text, Button, Platform, TouchableOpacity} from 'react-native';
+import { useNavigation, useRoute  } from '@react-navigation/native';
 
 import {styles} from './styles/styles';
 
-class Feed extends Component {
-  render() {
-    console.log(this.props);
+Feed = () => {
+
+  const navigation = useNavigation();
+  const route = useRoute();
+
+    let detailResult = route.params;
+    //console.log(this.props);
+    console.log(route)
+    
     return (
       <View style={styles.center}>
-        <Text style={styles.title}>Navigation 6</Text>
+        <Text style={styles.title}>
+          {detailResult ? 'Navigation 6'+' '+ detailResult.data : 'Navigation 6'}
+        </Text>
         <Text style={styles.subTitle}>Drawer , Tabs & Props Route Params</Text>
-        <Button
-          title="Go to Detail Item"
-          onPress={() => {
-            this.props.navigation.navigate('Detail', {
-              screenName: 'props.route.params',
-            });
-          }}
-        />
-      </View>
-    );
-  }
+        {
+        Platform.select({
+          ios:
+            <Button
+              title='Go to Feed Item'
+              onPress={() => navigation.navigate('Detail', { screenName: "Detail Screen by Navigation Route" })}
+            />,
+          android:
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Detail', { screenName: "Detail Screen by Navigation Route" })}>
+              <Text style={styles.androidButtonText}>Go to Detail Screen</Text>
+            </TouchableOpacity>
+        })
+      }
+
+    </View>
+  );
 }
 
 export default Feed;

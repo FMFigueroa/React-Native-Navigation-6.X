@@ -14,7 +14,6 @@ import Icon1 from './src/screens/tabsBottom/Icon1';
 import Icon2 from './src/screens/tabsBottom/Icon2';
 import Icon3 from './src/screens/tabsBottom/Icon3';
 
-
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -30,28 +29,59 @@ const screenOptions = {headerShown: false};
 
 App = () => {
   createHomeStack = () => (
-    <Stack.Navigator>
-      <Stack.Screen name="Feed" component={Feed} options={{title: 'Home'}} />
-      <Stack.Screen name="Detail" component={Detail} />
+    <Stack.Navigator initialRouteName="Feed">
+      <Stack.Screen
+        name="Feed"
+        component={Feed}
+        options={{
+          title: 'Home',
+          headerStyle: {backgroundColor: '#e56'},
+          headerTintColor: '#ffff',
+          headerTitleStyle: {fontWeight: 'bold'},
+        }}
+      />
+      <Stack.Screen
+        name="Detail"
+        component={Detail}
+        options={{
+          title: 'Detail Screen',
+          headerStyle: {backgroundColor: '#9e0'},
+          headerTintColor: '#ffff',
+          headerTitleStyle: {fontWeight: 'bold'},
+        }}
+      />
       <Stack.Screen name="Top Tabs" children={createTopTabs} />
       <Stack.Screen name="Bottom Tabs" children={createBottomTabs} />
     </Stack.Navigator>
   );
 
-  createTopTabs = () => {
+  createTopTabs = props => {
+    //console.log(props);
     return (
       <MaterialTopTabs.Navigator>
-        <MaterialTopTabs.Screen name="Tab1" component={Tab1} />
-        <MaterialTopTabs.Screen name="Tab2" component={Tab2} />
+        <MaterialTopTabs.Screen
+          name="Tab1"
+          component={Tab1}
+          options={{title: props.route.params.name}}
+        />
+        <MaterialTopTabs.Screen
+          name="Tab2"
+          component={Tab2}
+          options={{title: 'Custom'}}
+        />
         <MaterialTopTabs.Screen name="Tab3" component={Tab3} />
       </MaterialTopTabs.Navigator>
     );
   };
 
-  createBottomTabs = () => {
+  createBottomTabs = props => {
     return (
       <MaterialBottomTabs.Navigator>
-        <MaterialBottomTabs.Screen name="Icon1" component={Icon1} />
+        <MaterialBottomTabs.Screen
+          name="Icon1"
+          component={Icon1}
+          options={{title: props.route.params.name}}
+        />
         <MaterialBottomTabs.Screen name="Icon2" component={Icon2} />
         <MaterialBottomTabs.Screen name="Icon3" component={Icon3} />
       </MaterialBottomTabs.Navigator>

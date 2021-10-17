@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   center: {
@@ -8,11 +8,14 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 32,
-    marginBottom: 16,
-  },
-  androidButtonText: {
     color: 'black',
-    fontSize: 30,
-  }
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  subTitle: {
+    fontSize: 14,
+    marginBottom: 10,
+    fontWeight: 'bold',
+  },
 });

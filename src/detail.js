@@ -1,14 +1,31 @@
 import React from 'react';
 import {View, Text, Button, Platform, TouchableOpacity} from 'react-native';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {
+  useNavigation,
+  useRoute,
+  useFocusEffect,
+} from '@react-navigation/native';
 
 import {styles} from './styles/styles';
 
 Detail = () => {
   //console.log(this.props);
-  console.log(route);
+  //console.log(route);
   const navigation = useNavigation();
   const route = useRoute();
+
+  useFocusEffect(
+    React.useCallback(() => {
+      fetch('https://restcountries.com/v2/capital/buenos aires').then(
+        response => {
+          response.json().then(data => {
+            //console.log(data);
+          });
+        },
+      );
+      return () => console.log('lost focus');
+    }, []),
+  );
 
   return (
     <View style={styles.center}>
